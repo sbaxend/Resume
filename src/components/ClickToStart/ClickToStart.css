@@ -1,0 +1,87 @@
+.startingScreen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    cursor: pointer;
+    background: #000; /* Dark background */
+    color: white;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    box-shadow: 0 0 5px white;
+    border-radius: 50%;
+    opacity: 0;
+    animation: twinkle 2s infinite ease-in-out;
+}
+
+/* Generate multiple stars */
+.startingScreen::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    z-index: 1;
+}
+
+@keyframes twinkle {
+    0%, 100% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+
+.resumeTitle {
+    margin-bottom: 20px;
+    font-size: 24px;
+    /* This title will not be part of the fading effect */
+}
+
+.startText {
+    font-size: 32px;
+    animation: fadeInOut 3s infinite;
+}
+
+@keyframes fadeInOut {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+}
+
+.resumeTitle {
+    font-size: 36px;
+    color: white;
+    text-shadow: 0 0 10px #00b3ff;
+    animation: neonGlow 3s ease-in-out infinite alternate;
+  }
+  
+  /* @keyframes neonGlow {
+    0% {
+      text-shadow: 0 0 10px #00b3ff, 0 0 20px #00b3ff, 0 0 30px #00b3ff, 0 0 40px #ff00de, 0 0 70px #ff00de, 0 0 80px #ff00de, 0 0 100px #ff00de, 0 0 150px #ff00de;
+    }
+    25% {
+      text-shadow: 0 0 10px #ffea00, 0 0 20px #ffea00, 0 0 30px #ffea00, 0 0 40px #ff00de, 0 0 70px #ff00de, 0 0 80px #ff00de, 0 0 100px #ff00de, 0 0 150px #ff00de;
+    }
+    50% {
+      text-shadow: 0 0 10px #00ff15, 0 0 20px #00ff15, 0 0 30px #00ff15, 0 0 40px #00ff15, 0 0 70px #ff00de, 0 0 80px #ff00de, 0 0 100px #ff00de, 0 0 150px #ff00de;
+    }
+    75% {
+      text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #ff0000, 0 0 40px #ff0000, 0 0 70px #ff00de, 0 0 80px #ff00de, 0 0 100px #ff00de, 0 0 150px #ff00de;
+    }
+    100% {
+      text-shadow: 0 0 10px #00b3ff, 0 0 20px #00b3ff, 0 0 30px #00b3ff, 0 0 40px #00b3ff, 0 0 70px #00b3ff, 0 0 80px #00b3ff, 0 0 100px #00b3ff, 0 0 150px #00b3ff;
+    }
+  } */

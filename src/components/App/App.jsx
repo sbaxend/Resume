@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   HashRouter as Router,
   Redirect,
@@ -19,6 +19,7 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import ClickToStart from '../ClickToStart/ClickToStart';
 
 import './App.css';
 
@@ -26,11 +27,20 @@ function App() {
   const dispatch = useDispatch();
 
   const user = useSelector(store => store.user);
+  
+  const [startingScreenClicked, setStartingScreenClicked] = useState(false);
 
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
   }, [dispatch]);
 
+  const handleStartingScreenClick = () => {
+    setStartingScreenClicked(true);
+  };
+
+  if (!startingScreenClicked) {
+    return <ClickToStart onClick={handleStartingScreenClick} />;}
+    
   return (
     <Router>
       <div>
