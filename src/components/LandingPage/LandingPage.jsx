@@ -6,7 +6,7 @@ import './LandingPage.css';
 import RegisterForm from '../RegisterForm/RegisterForm';
 
 function LandingPage() {
-  const [heading, setHeading] = useState('Welcome');
+  const [heading, setHeading] = useState('Welcome To My Coding Portfolio!');
   const history = useHistory();
 
   const onLogin = (event) => {
@@ -19,37 +19,29 @@ function LandingPage() {
 
       <div className="grid">
         <div className="grid-col grid-col_8">
+        <p>
+          🌟 Explore Diverse Technologies: Dive into a world where JavaScript dances with TypeScript, where AWS clouds shape the horizon, and where HTML and CSS weave the web's fabric. Discover my journey with React, Redux, SQL, .NET, and more!
+          </p>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-            id felis metus. Vestibulum et pulvinar tortor. Morbi pharetra lacus
-            ut ex molestie blandit. Etiam et turpis sit amet risus mollis
-            interdum. Suspendisse et justo vitae metus bibendum fringilla sed
-            sed justo. Aliquam sollicitudin dapibus lectus, vitae consequat odio
-            elementum eget. Praesent efficitur eros vitae nunc interdum, eu
-            interdum justo facilisis. Sed pulvinar nulla ac dignissim efficitur.
-            Quisque eget eros metus. Vestibulum bibendum fringilla nibh a
-            luctus. Duis a sapien metus.
+          🔍 Discover Real-World Projects: Navigate through a curated collection of my projects. Each project is a story – from conception to deployment, highlighting challenges, solutions, and learning experiences.
+          </p>
+          <p>
+          📚 Learn with Me: Whether you're here to evaluate my skills for potential collaboration or to learn something new, there's a treasure trove of insights in my blogs and tutorials.
+          </p>
+          <p>
+          🔧 Interact & Experiment: Don't just browse – interact! Test out live demos, play with code snippets, and see the results of various technologies in action.
+          </p>
+          <p>
+          👋 Let's Connect: Have questions or want to discuss potential opportunities? The contact section is just a click away.
+          </p>
+          <p>
+          🔐 Secure & Easy Login: Start your exploration securely. If you're a returning visitor, welcome back! If you're new here, signing up is quick and easy.
+          </p>
+          <p>
+            Ready to embark on this technological journey? Log in or sign up and let the adventure begin!
           </p>
 
-          <p>
-            Praesent consectetur orci dui, id elementum eros facilisis id. Sed
-            id dolor in augue porttitor faucibus eget sit amet ante. Nunc
-            consectetur placerat pharetra. Aenean gravida ex ut erat commodo, ut
-            finibus metus facilisis. Nullam eget lectus non urna rhoncus
-            accumsan quis id massa. Curabitur sit amet dolor nisl. Proin
-            euismod, augue at condimentum rhoncus, massa lorem semper lacus, sed
-            lobortis augue mi vel felis. Duis ultrices sapien at est convallis
-            congue.
-          </p>
-
-          <p>
-            Fusce porta diam ac tortor elementum, ut imperdiet metus volutpat.
-            Suspendisse posuere dapibus maximus. Aliquam vitae felis libero. In
-            vehicula sapien at semper ultrices. Vivamus sed feugiat libero. Sed
-            sagittis neque id diam euismod, ut egestas felis ultricies. Nullam
-            non fermentum mauris. Sed in enim ac turpis faucibus pretium in sit
-            amet nisi.
-          </p>
+        
         </div>
         <div className="grid-col grid-col_4">
           <RegisterForm />
