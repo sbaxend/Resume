@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import './LandingPage.css';
 
@@ -9,16 +9,35 @@ function LandingPage() {
   const [heading, setHeading] = useState('Welcome To My Coding Portfolio!');
   const history = useHistory();
 
+  const createStars = () => {
+    const startingScreen = document.querySelector('.loginScreen');
+    for (let i = 0; i < 100; i++) {
+        const star = document.createElement('div');
+        star.classList.add('star');
+        star.style.top = `${Math.random() * 100}%`;
+        star.style.left = `${Math.random() * 100}%`;
+        star.style.animationDuration = `${Math.random() * 3 + 2}s`;
+        star.style.animationDelay = `${Math.random() * 2}s`;
+        startingScreen.appendChild(star);
+    }
+};
+
+useEffect(() => {
+    createStars();
+}, [])
+
   const onLogin = (event) => {
     history.push('/login');
   };
 
   return (
-    <div className="container">
+    <div className="loginScreen">
       <h2>{heading}</h2>
 
       <div className="grid">
         <div className="grid-col grid-col_8">
+        <div className="crawl-container">
+        <div className='crawl-text'>
         <p>
           🌟 Explore Diverse Technologies: Dive into a world where JavaScript dances with TypeScript, where AWS clouds shape the horizon, and where HTML and CSS weave the web's fabric. Discover my journey with React, Redux, SQL, .NET, and more!
           </p>
@@ -40,8 +59,8 @@ function LandingPage() {
           <p>
             Ready to embark on this technological journey? Log in or sign up and let the adventure begin!
           </p>
-
-        
+          </div>
+          </div>
         </div>
         <div className="grid-col grid-col_4">
           <RegisterForm />

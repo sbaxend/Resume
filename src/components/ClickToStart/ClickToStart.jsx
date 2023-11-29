@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import LandingPage from '../LandingPage/LandingPage';
 import './ClickToStart.css'
+import Switch from '@mui/material/Switch';
+import CelebrationIcon from '@mui/icons-material/Celebration';
 function ClickToStart() {
     const [isStartingScreenVisible, setIsStartingScreenVisible] = useState(true);
-
+    
     const handleStartClick = () => {
         setIsStartingScreenVisible(false)
     }
@@ -26,8 +28,10 @@ function ClickToStart() {
     }, [])
 
     return(
-        
+
         <div>
+        <Switch>Party Mode</Switch>
+        
       {isStartingScreenVisible && (
         <div className="startingScreen" onClick={handleStartClick}>
           <h2 className="resumeTitle">Seth Baxendell's Resume</h2>

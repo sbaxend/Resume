@@ -1,6 +1,82 @@
 /* --------------------------------------------------------------------------------
 Grid
 -------------------------------------------------------------------------------- */
+.loginScreen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  cursor: pointer;
+  background: #000; /* Dark background */
+  color: white;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  box-shadow: 0 0 5px white;
+  border-radius: 50%;
+  opacity: 0;
+  animation: twinkle 2s infinite ease-in-out;
+}
+
+/* Generate multiple stars */
+.loginScreen::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  z-index: 1;
+}
+
+@keyframes twinkle {
+  0%, 100% {
+      opacity: 0;
+  }
+  50% {
+      opacity: 1;
+  }
+}
+
+@keyframes crawl {
+  0% {
+    top: 100vh; /* Start below the screen */
+    transform: perspective(300px) rotateX(25deg);
+}
+100% {
+    top: 0; /* End at the top of the screen */
+    transform: perspective(300px) rotateX(25deg);
+}
+}
+
+.crawl-container {
+  perspective: 400px;
+  overflow: hidden;
+  position: relative;
+  height: 500px; /* height adjuster */
+}
+
+.crawl-text {
+  position: relative;
+  top: 100vh; /* vh stands for viewport height */
+  transform-origin: 50% 100%;
+  animation: crawl 30s linear; /* Adjust timing as needed */
+  font-family: 'Arial', sans-serif; /* or any font you prefer */
+  text-align: justify;
+  transform: rotateX(20deg); /* Adjust for perspective */
+  color: yellow;
+  text-shadow: -1px -1px 1px #000, 1px 1px 1px #000;
+  animation-fill-mode: forwards;
+}
 
 .grid {
   display: flex;

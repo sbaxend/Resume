@@ -48,6 +48,7 @@
 .resumeTitle {
     margin-bottom: 20px;
     font-size: 24px;
+    animation: grow-and-shrink 2s ease-in-out infinite alternate;
     /* This title will not be part of the fading effect */
 }
 
@@ -62,10 +63,11 @@
 }
 
 .resumeTitle {
+    margin-bottom: 20px;
     font-size: 36px;
     color: white;
     text-shadow: 0 0 10px #00b3ff;
-    animation: neonGlow 3s ease-in-out infinite alternate;
+    animation: grow-and-shrink 3s ease-in-out infinite alternate;
   }
   
   /* @keyframes neonGlow {
@@ -85,3 +87,12 @@
       text-shadow: 0 0 10px #00b3ff, 0 0 20px #00b3ff, 0 0 30px #00b3ff, 0 0 40px #00b3ff, 0 0 70px #00b3ff, 0 0 80px #00b3ff, 0 0 100px #00b3ff, 0 0 150px #00b3ff;
     }
   } */
+
+  @keyframes grow-and-shrink {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.5);
+    }
+}
