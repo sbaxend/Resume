@@ -59,7 +59,7 @@ Grid
 }
 
 .crawl-container {
-  perspective: 400px;
+  perspective: 401px;
   overflow: hidden;
   position: relative;
   height: 500px; /* height adjuster */
