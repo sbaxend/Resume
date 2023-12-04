@@ -7,12 +7,24 @@ Grid
   justify-content: center;
   align-items: center;
   height: 100vh;
-  cursor: pointer;
+ 
   background: #000; /* Dark background */
   color: white;
   text-align: center;
   position: relative;
   overflow: hidden;
+}
+
+.loginScreen::before, .startingScreen::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  z-index: 1; /* Keep this behind interactive elements */
+  pointer-events: none; /* This allows clicks to pass through */
 }
 
 .star {
@@ -24,18 +36,7 @@ Grid
   border-radius: 50%;
   opacity: 0;
   animation: twinkle 2s infinite ease-in-out;
-}
-
-/* Generate multiple stars */
-.loginScreen::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: transparent;
-  z-index: 1;
+  pointer-events: none; /* Apply this to individual stars as well */
 }
 
 @keyframes twinkle {
@@ -58,99 +59,3 @@ Grid
 }
 }
 
-.crawl-container {
-  perspective: 401px;
-  overflow: hidden;
-  position: relative;
-  height: 500px; /* height adjuster */
-}
-
-.crawl-text {
-  position: relative;
-  top: 100vh; /* vh stands for viewport height */
-  transform-origin: 50% 100%;
-  animation: crawl 30s linear; /* Adjust timing as needed */
-  font-family: 'Arial', sans-serif; /* or any font you prefer */
-  text-align: justify;
-  transform: rotateX(20deg); /* Adjust for perspective */
-  color: yellow;
-  text-shadow: -1px -1px 1px #000, 1px 1px 1px #000;
-  animation-fill-mode: forwards;
-}
-
-.grid {
-  display: flex;
-  flex: 0 1 auto;
-  /* defaults to 'row' */
-  flex-direction: row;
-  flex-wrap: wrap;
-  /* defaults to 'flex-start' */
-  justify-content: flex-start;
-  align-items: flex-start;
-}
-
-.grid-col {
-  flex: 0 0 auto;
-  padding: 0 0.5rem 0.5rem;
-  box-sizing: border-box;
-}
-
-.grid-col_1 {
-  flex-basis: 8.33333333%;
-  max-width: 8.33333333%;
-}
-
-.grid-col_2 {
-  flex-basis: 16.66666667%;
-  max-width: 16.66666667%;
-}
-
-.grid-col_3 {
-  flex-basis: 25%;
-  max-width: 25%;
-}
-
-.grid-col_4 {
-  flex-basis: 33.33333333%;
-  max-width: 33.33333333%;
-}
-
-.grid-col_5 {
-  flex-basis: 41.66666667%;
-  max-width: 41.66666667%;
-}
-
-.grid-col_6 {
-  flex-basis: 50%;
-  max-width: 50%;
-}
-
-.grid-col_7 {
-  flex-basis: 58.33333333%;
-  max-width: 58.33333333%;
-}
-
-.grid-col_8 {
-  flex-basis: 66.66666667%;
-  max-width: 66.66666667%;
-}
-
-.grid-col_9 {
-  flex-basis: 75%;
-  max-width: 75%;
-}
-
-.grid-col_10 {
-  flex-basis: 83.33333333%;
-  max-width: 83.33333333%;
-}
-
-.grid-col_11 {
-  flex-basis: 91.66666667%;
-  max-width: 91.66666667%;
-}
-
-.grid-col_12 {
-  flex-basis: 100%;
-  max-width: 100%;
-}

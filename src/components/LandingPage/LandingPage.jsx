@@ -36,8 +36,7 @@ useEffect(() => {
 
       <div className="grid">
         <div className="grid-col grid-col_8">
-        <div className="crawl-container">
-        <div className='crawl-text'>
+   
         <p>
           🌟 Explore Diverse Technologies: Dive into a world where JavaScript dances with TypeScript, where AWS clouds shape the horizon, and where HTML and CSS weave the web's fabric. Discover my journey with React, Redux, SQL, .NET, and more!
           </p>
@@ -59,8 +58,7 @@ useEffect(() => {
           <p>
             Ready to embark on this technological journey? Log in or sign up and let the adventure begin!
           </p>
-          </div>
-          </div>
+         
         </div>
         <div className="grid-col grid-col_4">
           <RegisterForm />
