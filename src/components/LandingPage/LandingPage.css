@@ -6,13 +6,13 @@ Grid
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: auto;
  
   background: #000; /* Dark background */
   color: white;
   text-align: center;
   position: relative;
-  overflow: hidden;
+  
 }
 
 .loginScreen::before, .startingScreen::before {
@@ -48,14 +48,5 @@ Grid
   }
 }
 
-@keyframes crawl {
-  0% {
-    top: 100vh; /* Start below the screen */
-    transform: perspective(300px) rotateX(25deg);
-}
-100% {
-    top: 0; /* End at the top of the screen */
-    transform: perspective(300px) rotateX(25deg);
-}
-}
+
 

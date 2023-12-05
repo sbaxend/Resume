@@ -3,8 +3,12 @@ import LandingPage from '../LandingPage/LandingPage';
 import './ClickToStart.css'
 import Switch from '@mui/material/Switch';
 import CelebrationIcon from '@mui/icons-material/Celebration';
+
+import { useHistory } from 'react-router-dom';
+
 function ClickToStart() {
     const [isStartingScreenVisible, setIsStartingScreenVisible] = useState(true);
+    const history = useHistory();
     
     const handleStartClick = () => {
         setIsStartingScreenVisible(false)
@@ -30,7 +34,7 @@ function ClickToStart() {
     return(
 
         <div>
-        <Switch>Party Mode</Switch>
+        {/* <Switch>Party Mode</Switch> */}
         
       {isStartingScreenVisible && (
         <div className="startingScreen" onClick={handleStartClick}>

@@ -34,8 +34,8 @@ useEffect(() => {
     <div className="loginScreen">
       <h2>{heading}</h2>
 
-      <div className="grid">
-        <div className="grid-col grid-col_8">
+      <div>
+        <div>
    
         <p>
           🌟 Explore Diverse Technologies: Dive into a world where JavaScript dances with TypeScript, where AWS clouds shape the horizon, and where HTML and CSS weave the web's fabric. Discover my journey with React, Redux, SQL, .NET, and more!
@@ -60,12 +60,12 @@ useEffect(() => {
           </p>
          
         </div>
-        <div className="grid-col grid-col_4">
+        <div>
           <RegisterForm />
 
           <center>
             <h4>Already a Member?</h4>
-            <button className="btn btn_sizeSm" onClick={onLogin}>
+            <button onClick={onLogin}>
               Login
             </button>
           </center>
