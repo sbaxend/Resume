@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import './LandingPage.css';
-import { Link } from 'react-router-dom';
+
 
 // CUSTOM COMPONENTS
 import RegisterForm from '../RegisterForm/RegisterForm';
@@ -66,11 +66,9 @@ useEffect(() => {
 
           <center>
             <h4>Already a Member?</h4>
-            <Link to="/login">
-            <button>
+            <button onClick={onLogin}>
               Login
             </button>
-            </Link>
           </center>
         </div>
       </div>
