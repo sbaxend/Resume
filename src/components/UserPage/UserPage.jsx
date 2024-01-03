@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
+import { HashLink as Link} from 'react-router-hash-link'
 import LogOutButton from '../LogOutButton/LogOutButton';
 import { useSelector } from 'react-redux';
 import './UserPage.css'; // Import your CSS file
@@ -15,8 +16,8 @@ function UserPage() {
             </header>
             <nav className="user-nav">
                 <ul>
-                    <li><Link to="/about-me" className="nav-link">About Me</Link></li>
-                    <li><Link to="/skills" className="nav-link">Skills & Expertise</Link></li>
+                    <li><Link to="#about-me" className="nav-link">About Me</Link></li>
+                    <li><Link to="#skills" className="nav-link">Skills & Expertise</Link></li>
                     <li><Link to="/prime-digital-academy" className="nav-link">Prime Digital Academy Projects</Link></li>
                     <li><Link to="/city-of-saint-petersburg" className="nav-link">City of Saint Petersburg Experience</Link></li>
                     <li><Link to="/usa-construction-group" className="nav-link">USA Construction Group Role</Link></li>
@@ -24,6 +25,38 @@ function UserPage() {
                     <li><Link to="/contact" className="nav-link">Contact Me</Link></li>
                 </ul>
             </nav>
+            <section id="about-me">
+                <h1>About Me:</h1>
+            </section>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <section id="skills">
+                <h1>Skills:</h1>
+            </section>
+            {/* More sections */}
             <LogOutButton className="logout-btn" />
         </div>
     );
