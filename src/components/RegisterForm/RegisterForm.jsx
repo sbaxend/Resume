@@ -19,7 +19,9 @@ function RegisterForm() {
         password: password,
         company: company,
       },
+      
     });
+    console.log('Dispatched New Register.')
   }; // end registerUser
 
   return (

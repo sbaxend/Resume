@@ -1,0 +1,45 @@
+.user-container {
+    text-align: center;
+    padding: 20px;
+    background-color: #f2f2f2; /* Light background */
+}
+
+.user-header {
+    margin-bottom: 30px;
+}
+
+.user-nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.user-nav ul li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #007bff; /* Highlight color on hover */
+}
+
+.logout-btn {
+    margin-top: 30px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.logout-btn:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
