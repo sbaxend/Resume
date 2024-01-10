@@ -31,9 +31,9 @@ function App() {
   const history = useHistory()
   const [startingScreenClicked, setStartingScreenClicked] = useState(false);
 
-  useEffect(() => {
-    dispatch({ type: 'FETCH_USER' });
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch({ type: 'FETCH_USER' });
+  // }, [dispatch]);
 
 
 
@@ -51,13 +51,13 @@ function App() {
           <Switch>
             <Route exact path="/">
               {startingScreenClicked
-                ? <Redirect to="/home" />
+                ? <Redirect to="/user" />
                 : <ClickToStart onClick={() => setStartingScreenClicked(true)} />}
             </Route>
             <Route exact path="/about" component={AboutPage} />
-            <ProtectedRoute exact path="/user" component={UserPage} />
-            <ProtectedRoute exact path="/info" component={InfoPage} />
-            <Route 
+            <Route exact path="/user" component={UserPage} />
+            <Route exact path="/info" component={InfoPage} />
+            {/* <Route 
               exact 
               path="/login" 
               render={() => user.id ? <Redirect to="/user" /> : <LoginPage />}
@@ -66,11 +66,11 @@ function App() {
               exact 
               path="/registration" 
               render={() => user.id ? <Redirect to="/user" /> : <RegisterPage />}
-            />
+            /> */}
             <Route 
               exact 
               path="/home" 
-              render={() => user.id ? <Redirect to="/user" /> : <LandingPage />}
+              render={() => user.id ? <Redirect to="/LandingPage" /> : <LandingPage />}
             />
             <Route render={() => <h1>404</h1>} />
           </Switch>

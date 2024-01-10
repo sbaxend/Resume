@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import LandingPage from '../LandingPage/LandingPage';
 import './ClickToStart.css'
+import UserPage from '../UserPage/UserPage';
 import Switch from '@mui/material/Switch';
 import CelebrationIcon from '@mui/icons-material/Celebration';
 
@@ -45,7 +46,7 @@ function ClickToStart() {
 
       {!isStartingScreenVisible && (
         <div className="mainContent">
-          <LandingPage />
+          <UserPage />
           
         </div>
       )}
