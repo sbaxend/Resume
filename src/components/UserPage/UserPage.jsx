@@ -11,18 +11,16 @@ function UserPage() {
     return (
         <div className="user-container">
             <header className="user-header">
-                <h2>Welcome, {user.username}!</h2>
-                <p>Your ID is: {user.id}</p>
+                <h2>Welcome</h2>
             </header>
             <nav className="user-nav">
                 <ul>
                     <li><Link to="#about-me" className="nav-link">About Me</Link></li>
+                    <li><Link to="#contact" className="nav-link">Contact Me</Link></li>
+                    <li><Link to="#education" className="nav-link">Education</Link></li>
                     <li><Link to="#skills" className="nav-link">Skills & Expertise</Link></li>
-                    <li><Link to="/prime-digital-academy" className="nav-link">Prime Digital Academy Projects</Link></li>
-                    <li><Link to="/city-of-saint-petersburg" className="nav-link">City of Saint Petersburg Experience</Link></li>
-                    <li><Link to="/usa-construction-group" className="nav-link">USA Construction Group Role</Link></li>
-                    <li><Link to="/portfolio" className="nav-link">My Portfolio</Link></li>
-                    <li><Link to="/contact" className="nav-link">Contact Me</Link></li>
+                    <li><Link to="#experience" className="nav-link">Work Experience</Link></li>
+                
                 </ul>
             </nav>
             <section id="about-me">
@@ -53,11 +51,124 @@ function UserPage() {
             <br/>
             <br/>
             <br/>
+            <section id="contact">
+                <h1>Contact:</h1>
+            </section>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <section id="education">
+                <h1>Education:
+                </h1>
+            </section>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
             <section id="skills">
                 <h1>Skills:</h1>
             </section>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <section id="experience">
+                <h1>Work Experience:</h1>
+            </section>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <section id="">
+                <h1></h1>
+            </section>
             {/* More sections */}
-            <LogOutButton className="logout-btn" />
+            {/* <LogOutButton className="logout-btn" /> */}
         </div>
     );
 }
