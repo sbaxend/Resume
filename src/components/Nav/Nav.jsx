@@ -3,12 +3,17 @@ import { Link } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 import { useSelector } from 'react-redux';
-
+import Avatar from '@mui/material/Avatar';
+import { deepPurple } from '@mui/material/colors';
+import SpaceIcon from '@mui/icons-material/SpaceBar';
 function Nav() {
   const user = useSelector((store) => store.user);
 
   return (
     <div className="nav">
+      <Avatar sx={{ bgcolor: deepPurple[500] }}>
+        <SpaceIcon />
+      </Avatar>
       <Link to="/home">
         <h2 className="nav-title">Prime Solo Project</h2>
       </Link>
