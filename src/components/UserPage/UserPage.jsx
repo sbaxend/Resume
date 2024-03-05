@@ -4,12 +4,13 @@ import { HashLink as Link} from 'react-router-hash-link'
 import LogOutButton from '../LogOutButton/LogOutButton';
 import { useSelector } from 'react-redux';
 import './UserPage.css'; // Import your CSS file
-
+import SideBar from '../SideBar/SideBar';
 function UserPage() {
     const user = useSelector((store) => store.user);
 
     return (
         <div className="user-container">
+          <SideBar />
             <header className="user-header">
                 <h2>Welcome</h2>
             </header>

@@ -1,0 +1,23 @@
+/* Nav.css or wherever your sidebar styles are */
+.side-bar {
+    position: fixed; /* or 'absolute', if more appropriate for your layout */
+    top: 0;
+    left: 0;
+    width: 100px; /* Adjust based on content size */
+    height: 100vh; /* Full height */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Center the content vertically */
+    gap: 20px;
+    background-color: #f0f0f0; /* Example background color */
+  }
+  
+  .social-links a {
+    color: inherit; /* Or specific color */
+    transition: color 0.3s ease;
+  }
+  
+  .social-links a:hover {
+    color: #666; /* Example hover color */
+  }
