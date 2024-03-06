@@ -16,9 +16,12 @@ function SideBar() {
       <Avatar sx={{ bgcolor: deepPurple[500], margin: '10px auto' }}>S</Avatar>
       <div className="social-links">
         <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"><TwitterIcon /></a>
+        <br/>
         <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"><FacebookIcon /></a>
+        <br />
         <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"><InstagramIcon /></a>
-        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"><LinkedInIcon /></a>
+        <br />
+        <a href="https://linkedin.com" target="https://www.linkedin.com/in/sethbaxendell/" rel="noopener noreferrer"><LinkedInIcon /></a>
       </div>
     </div>
   );
