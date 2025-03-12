@@ -7,7 +7,7 @@ import SideBar from '../SideBar/SideBar';
 
 function UserPage() {
     const user = useSelector((store) => store.user);
-
+    //testing
     // Function to generate stars
     const generateStars = (numStars) => {
         let stars = [];
@@ -82,7 +82,9 @@ function UserPage() {
                         <strong>Soft Skills:</strong> Growth mindset, adaptable, creative, lifelong learner, curious, problem solver, resourceful, work well on a team, critical thinker.
                     </p>
                 </section>
+                
                 <section id="experience">
+                
                     <h1>Work Experience:</h1>
                     <div>
                         <h2>PRIME DIGITAL ACADEMY: Full-Stack Developer Student</h2>
