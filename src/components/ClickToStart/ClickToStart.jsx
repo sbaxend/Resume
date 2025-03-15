@@ -1,20 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import LandingPage from '../LandingPage/LandingPage';
-import './ClickToStart.css'
+import './ClickToStart.css';
 import UserPage from '../UserPage/UserPage';
-import Switch from '@mui/material/Switch';
-import CelebrationIcon from '@mui/icons-material/Celebration';
-
 import { useHistory } from 'react-router-dom';
+import LoadingScreen from '../LoadingScreen/loadingScreen'; // Import Loading Screen
 
 function ClickToStart() {
     const [isStartingScreenVisible, setIsStartingScreenVisible] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);  // Track the loading state
     const history = useHistory();
-    
+
     const handleStartClick = () => {
-        setIsStartingScreenVisible(false)
+        setIsLoading(true);  // Start loading screen
+        setIsStartingScreenVisible(false);  // Hide starting screen
+        setTimeout(() => {
+            setIsLoading(false); // Hide loading screen after 3 seconds
+            history.push("/user"); // Redirect to user page
+        }, 3000);  // Show the loading screen for 3 seconds
     }
-    
+
     const createStars = () => {
         const startingScreen = document.querySelector('.startingScreen');
         for (let i = 0; i < 100; i++) {
@@ -30,28 +33,33 @@ function ClickToStart() {
 
     useEffect(() => {
         createStars();
-    }, [])
+    }, []);
 
-    return(
-
+    return (
         <div>
-        {/* <Switch>Party Mode</Switch> */}
-        
-      {isStartingScreenVisible && (
-        <div className="startingScreen" onClick={handleStartClick}>
-          <h2 className="resumeTitle">Seth Baxendell's Resume</h2>
-          <h1 className="startText">Click Anywhere To Start</h1>
-        </div>
-      )}
+            {/* Show Loading Screen while the app is loading */}
+            {isLoading ? (
+                <LoadingScreen /> // This is where your loading screen appears
+            ) : (
+                <>
+                    {/* Starting Screen */}
+                    {isStartingScreenVisible && (
+                        <div className="startingScreen" onClick={handleStartClick}>
+                            <h2 className="resumeTitle">Seth Baxendell's Resume</h2>
+                            <h1 className="startText">Click Anywhere To Start</h1>
+                        </div>
+                    )}
 
-      {!isStartingScreenVisible && (
-        <div className="mainContent">
-          <UserPage />
-          
+                    {/* Main Content (UserPage) */}
+                    {!isStartingScreenVisible && !isLoading && (
+                        <div className="mainContent">
+                            <UserPage />
+                        </div>
+                    )}
+                </>
+            )}
         </div>
-      )}
-        </div>
-        
     )
 }
-export default ClickToStart; 
+
+export default ClickToStart;
