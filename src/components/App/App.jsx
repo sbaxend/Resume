@@ -17,7 +17,7 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import ClickToStart from '../ClickToStart/ClickToStart';  // Import ClickToStart
 import './App.css';
-
+import MainResumePage from '../MainResumePage/MainResumePage';
 function App() {
   const dispatch = useDispatch();
   const user = useSelector(store => store.user);
@@ -38,6 +38,7 @@ function App() {
             path="/home"
             render={() => (user.id ? <Redirect to="/LandingPage" /> : <LandingPage />)}
           />
+          <Route exact path="/resume" component={MainResumePage} />
           <Route render={() => <h1>404 Not Found</h1>} />
         </Switch>
         <Footer />

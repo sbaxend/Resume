@@ -1,0 +1,148 @@
+/* Container for the resume */
+.resume-container {
+    background-color: #1a1a1a; /* Dark background */
+    color: white;
+    font-family: Arial, sans-serif;
+    padding: 30px;
+    margin: 0 auto;
+    max-width: 900px; /* To keep the content width manageable */
+}
+
+/* Header with name and tagline */
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    font-size: 3rem;
+    color: #00ccff;  /* Bright blue for emphasis */
+    text-shadow: 0 0 10px rgba(0, 204, 255, 0.8); /* Glowing effect */
+}
+
+.header p {
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin-top: 10px;
+}
+
+/* Objective Section */
+.objective h2 {
+    color: #00ccff;
+    font-size: 2rem;
+}
+
+.objective p {
+    font-size: 1.2rem;
+}
+
+/* Education Section */
+.education h2 {
+    color: #00ccff;
+    font-size: 2rem;
+}
+
+.education ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.education ul li {
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+}
+
+.education strong {
+    font-size: 1.4rem;
+    color: #00ccff;
+}
+
+/* Experience Section */
+.experience h2 {
+    color: #00ccff;
+    font-size: 2rem;
+}
+
+.job {
+    margin-bottom: 20px;
+}
+
+.job h3 {
+    font-size: 1.6rem;
+    color: #00ccff;
+}
+
+.job p {
+    font-size: 1.2rem;
+}
+
+/* Skills Section */
+.skills h2 {
+    color: #00ccff;
+    font-size: 2rem;
+}
+
+.skills p {
+    font-size: 1.2rem;
+}
+
+/* Self-Development Section */
+.self-development h2 {
+    color: #00ccff;
+    font-size: 2rem;
+}
+
+.self-dev h3 {
+    font-size: 1.6rem;
+    color: #00ccff;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .resume-container {
+        padding: 20px;
+    }
+
+    .header h1 {
+        font-size: 2.5rem;
+    }
+
+    .header p {
+        font-size: 1.2rem;
+    }
+
+    .objective h2,
+    .education h2,
+    .experience h2,
+    .skills h2,
+    .self-development h2 {
+        font-size: 1.6rem;
+    }
+
+    .job h3,
+    .self-dev h3 {
+        font-size: 1.4rem;
+    }
+}
+/* Style for the Resume Button */
+.resume-button {
+    padding: 15px 25px;
+    font-size: 1.2rem;
+    background-color: #00ccff;  /* Space-themed bright blue */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.resume-button:hover {
+    background-color: #0099cc;  /* Slightly darker blue on hover */
+    transform: scale(1.1);  /* Slight scale-up effect */
+}
+
+.resume-button:focus {
+    outline: none; /* Remove default focus outline */
+}

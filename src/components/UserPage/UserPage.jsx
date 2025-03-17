@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { HashLink as Link } from 'react-router-hash-link';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import { useSelector } from 'react-redux';
 import './UserPage.css';
 import SideBar from '../SideBar/SideBar';
-
+import { useHistory } from 'react-router-dom';
 function UserPage() {
     const user = useSelector((store) => store.user);
-    //testing
+    const history = useHistory();
+    const handleResumeButtonClick = () => {
+        history.push('/resume')
+    };
     // Function to generate stars
     const generateStars = (numStars) => {
         let stars = [];
@@ -15,7 +18,8 @@ function UserPage() {
             const style = {
                 top: `${Math.random() * 100}%`,
                 left: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 2}s`
+                animationDelay: `${Math.random() * 2}s`, // Random animation delay for each star
+                opacity: Math.random() * 0.8 + 0.2, // Random opacity for a more dynamic effect
             };
             stars.push(<div key={i} className="star" style={style}></div>);
         }
@@ -26,10 +30,17 @@ function UserPage() {
         <div className="main-container">
             <SideBar />
             <div className="user-container">
+                {/* Generate stars dynamically */}
                 {generateStars(100)}
+
                 <header className="user-header">
                     <h2>Welcome</h2>
                 </header>
+                <div className="resume-btn-container">
+                    <button onClick={handleResumeButtonClick} className="resume-button">
+                        View Resume
+                    </button>
+                </div>
                 <nav className="user-nav">
                     <ul>
                         <li><Link to="#about-me" className="nav-link">About Me</Link></li>
@@ -39,6 +50,8 @@ function UserPage() {
                         <li><Link to="#experience" className="nav-link">Work Experience</Link></li>
                     </ul>
                 </nav>
+
+                {/* About Me Section */}
                 <section id="about-me">
                     <h2>About Me</h2>
                     <p>
@@ -57,22 +70,28 @@ function UserPage() {
                          My aim is to leverage my diverse skills to develop innovative software solutions that make a difference.
                     </p>
                 </section>
+
+                {/* Contact Section */}
                 <section id="contact">
                     <h1>Contact:</h1>
                     <p>Phone Number</p>
                     <p>Email</p>
                     <p>linkedin URL</p>
                 </section>
+
+                {/* Education Section */}
                 <section id="education">
                     <h1>Education:</h1>
                     <ul>
                         <li>
                             <strong>PRIME DIGITAL ACADEMY: Full-Stack Developer Student</strong> - Minneapolis, MN (Remote)
                             <p>(January 2023 - July 2023)</p>
-                            <p>An coding immersion program that focuses on relevant technologies and methods within the full-stack software development field. Technologies include JavaScript, HTML 5, CSS, React, jQuery, PostgreSQL, and Node.js.</p>
+                            <p>An intensive coding immersion program that focuses on relevant technologies within the full-stack software development field. Technologies include JavaScript, HTML5, CSS, React, jQuery, PostgreSQL, and Node.js.</p>
                         </li>
                     </ul>
                 </section>
+
+                {/* Skills Section */}
                 <section id="skills">
                     <h1>Skills:</h1>
                     <p>
@@ -83,20 +102,19 @@ function UserPage() {
                     </p>
                 </section>
                 
+                {/* Experience Section */}
                 <section id="experience">
-                
                     <h1>Work Experience:</h1>
                     <div>
                         <h2>PRIME DIGITAL ACADEMY: Full-Stack Developer Student</h2>
                         <p>Minneapolis, MN (Remote) | January 2023 - July 2023</p>
                         <ul>
-                            <li>An intensive coding immersion program focusing on full-stack software development with technologies such as JavaScript, HTML 5, CSS, React, jQuery, PostgreSQL, and Node.js.</li>
+                            <li>An intensive coding immersion program focusing on full-stack software development with technologies such as JavaScript, HTML5, CSS, React, jQuery, PostgreSQL, and Node.js.</li>
                             <li><strong>Solo Project:</strong> Developed a full-stack application for managing vehicle maintenance. Utilized technologies like Javascript, HTML, CSS, SweetAlert2, Express, and more.</li>
                             <li><strong>Client Project:</strong> Contributed as a full-stack developer on a team project for a mental health and financial decision-making mobile app. Handled both backend and frontend development using various technologies.</li>
                         </ul>
                     </div>
                 </section>
-                {/* More sections */}
                 {/* <LogOutButton className="logout-btn" /> */}
             </div>
         </div>
