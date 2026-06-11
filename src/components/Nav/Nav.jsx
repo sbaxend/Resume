@@ -15,7 +15,7 @@ function Nav() {
         <SpaceIcon />
       </Avatar>
       <Link to="/home">
-        <h2 className="nav-title">Prime Solo Project</h2>
+        <h2 className="nav-title">Seth Baxendell</h2>
       </Link>
       <div>
         {/* If no user is logged in, show these links */}

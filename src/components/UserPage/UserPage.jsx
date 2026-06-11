@@ -55,8 +55,8 @@ function UserPage() {
                 <section id="about-me">
                     <h2>About Me</h2>
                     <p>
-                        I'm a dedicated Full-Stack Developer with a rich background in technical and maintenance roles, 
-                        currently based in [Your Location]. Transitioning from hands-on roles at the City of Saint Petersburg 
+                        I'm a dedicated Full-Stack Developer with a rich background in technical and maintenance roles.
+                        Transitioning from hands-on roles at the City of Saint Petersburg
                         and USA Construction Group, where I developed a keen sense of problem-solving, leadership, and technical 
                         proficiency, I've recently completed an immersive coding program at Prime Digital Academy. 
                         This program equipped me with expertise in JavaScript, React, Node.js, and other modern web technologies, 
@@ -74,9 +74,9 @@ function UserPage() {
                 {/* Contact Section */}
                 <section id="contact">
                     <h1>Contact:</h1>
-                    <p>Phone Number</p>
-                    <p>Email</p>
-                    <p>linkedin URL</p>
+                    <p>Phone: (952) 693-8402</p>
+                    <p>Email: <a href="mailto:sethbaxendell1@gmail.com">sethbaxendell1@gmail.com</a></p>
+                    <p>LinkedIn: <a href="https://www.linkedin.com/in/sethbaxendell/" target="_blank" rel="noopener noreferrer">linkedin.com/in/sethbaxendell</a></p>
                 </section>
 
                 {/* Education Section */}

@@ -36,7 +36,7 @@ function App() {
           <Route
             exact
             path="/home"
-            render={() => (user.id ? <Redirect to="/LandingPage" /> : <LandingPage />)}
+            render={() => (user.id ? <Redirect to="/user" /> : <LandingPage />)}
           />
           <Route exact path="/resume" component={MainResumePage} />
           <Route render={() => <h1>404 Not Found</h1>} />

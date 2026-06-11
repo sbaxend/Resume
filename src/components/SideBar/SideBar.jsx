@@ -18,7 +18,7 @@ function SideBar() {
       <div className="social-links">
         <a href="https://github.com/sbaxend" target="_blank" rel="noopener noreferrer"><GitHubIcon /></a>
         <br />
-        <a href="https://linkedin.com" target="https://www.linkedin.com/in/sethbaxendell/" rel="noopener noreferrer"><LinkedInIcon /></a>
+        <a href="https://www.linkedin.com/in/sethbaxendell/" target="_blank" rel="noopener noreferrer"><LinkedInIcon /></a>
       </div>
     </div>
   );
