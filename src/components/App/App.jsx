@@ -1,12 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   HashRouter as Router,
-  Redirect,
   Route,
   Switch,
 } from 'react-router-dom';
-
-import { useDispatch, useSelector } from 'react-redux';
 
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
@@ -14,31 +11,21 @@ import Footer from '../Footer/Footer';
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
-import LandingPage from '../LandingPage/LandingPage';
-import ClickToStart from '../ClickToStart/ClickToStart';  // Import ClickToStart
-import './App.css';
+import ClickToStart from '../ClickToStart/ClickToStart';
 import MainResumePage from '../MainResumePage/MainResumePage';
-function App() {
-  const dispatch = useDispatch();
-  const user = useSelector(store => store.user);
+import './App.css';
 
+function App() {
   return (
     <Router>
       <div>
         <Nav />
         <Switch>
-          <Route exact path="/">
-            <ClickToStart />
-          </Route>
-          <Route exact path="/about" component={AboutPage} />
+          <Route exact path="/" component={ClickToStart} />
           <Route exact path="/user" component={UserPage} />
-          <Route exact path="/info" component={InfoPage} />
-          <Route
-            exact
-            path="/home"
-            render={() => (user.id ? <Redirect to="/user" /> : <LandingPage />)}
-          />
           <Route exact path="/resume" component={MainResumePage} />
+          <Route exact path="/about" component={AboutPage} />
+          <Route exact path="/info" component={InfoPage} />
           <Route render={() => <h1>404 Not Found</h1>} />
         </Switch>
         <Footer />

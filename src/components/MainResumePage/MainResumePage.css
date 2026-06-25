@@ -1,238 +1,476 @@
-/* Body styling for a consistent dark theme */
-body {
-    background-color: #000; /* Ensure the entire page background is black */
-    color: white;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    height: 100%; /* Ensure body takes up full height */
-}
-
-/* Container for the resume */
-.resume-container {
-    background-color: #000; /* Dark background for content */
-    color: white;
-    font-family: Arial, sans-serif;
-    padding: 30px;
-    margin: 0 auto;
-    max-width: 900px; /* Keep the content width manageable */
-    height: 100%; /* Ensure the container takes full height */
-    box-sizing: border-box;
-}
-
-/* Ensure the container takes full height of the viewport */
-.main-container {
+/* ── Page shell ── */
+.terminal-page {
+    position: fixed;
+    inset: 0;
+    z-index: 500;           /* sits above global Nav/Footer; below body::after scanlines (9999) */
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh; /* Full height of the viewport */
+    background-color: #0a0800;
+    font-family: 'IBM Plex Mono', 'Courier New', Courier, monospace;
+    color: rgba(255, 176, 0, 0.78);
 }
 
-/* Header with name and tagline */
-.header {
-    text-align: center;
+/* ── Status bar ── */
+.term-statusbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    height: 46px;
+    flex-shrink: 0;
+    border-bottom: 1px solid rgba(255, 176, 0, 0.22);
+}
+
+.term-statusbar-left {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+}
+
+.term-exit-btn {
+    color: rgba(255, 176, 0, 0.65);
+    text-decoration: none;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.10em;
+    transition: color 0.15s;
+}
+
+.term-exit-btn:hover {
+    color: #ffb000;
+}
+
+.term-label {
+    color: rgba(255, 176, 0, 0.35);
+    font-size: 0.68rem;
+    font-weight: 400;
+    letter-spacing: 0.20em;
+}
+
+.term-download-btn {
+    display: inline-block;
+    padding: 6px 18px;
+    font-family: 'IBM Plex Mono', 'Courier New', Courier, monospace;
+    font-size: 0.74rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: #0a0800;
+    background: #ffb000;
+    border: 1px solid #ffb000;
+    border-radius: 2px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.15s, box-shadow 0.15s;
+}
+
+.term-download-btn:hover {
+    background: #ffd080;
+    border-color: #ffd080;
+    box-shadow: 0 0 14px rgba(255, 176, 0, 0.40);
+}
+
+/* ── Body ── */
+.term-body {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+    min-height: 0;
+}
+
+/* ── Sidebar ── */
+.term-sidebar {
+    width: 182px;
+    flex-shrink: 0;
+    border-right: 1px solid rgba(255, 176, 0, 0.18);
+    display: flex;
+    flex-direction: column;
+    padding: 14px 0;
+    overflow-y: auto;
+}
+
+.term-nav-item {
+    background: none;
+    border: none;
+    border-left: 2px solid transparent;
+    text-align: left;
+    font-family: 'IBM Plex Mono', 'Courier New', Courier, monospace;
+    font-size: 0.78rem;
+    font-weight: 400;
+    letter-spacing: 0.13em;
+    color: rgba(255, 176, 0, 0.55);
+    padding: 12px 20px;
+    cursor: pointer;
+    width: 100%;
+    transition: color 0.12s, background 0.12s;
+}
+
+.term-nav-item:hover {
+    color: #ffb000;
+    background: rgba(255, 176, 0, 0.07);
+}
+
+.term-nav-item:focus-visible {
+    outline: 1px solid rgba(255, 176, 0, 0.55);
+    outline-offset: -3px;
+}
+
+.term-nav-item--active {
+    background: #ffb000;
+    color: #0a0800;
+    font-weight: 700;
+    border-left-color: transparent;
+}
+
+.term-nav-item--active:hover {
+    background: #ffd080;
+    color: #0a0800;
+}
+
+/* ── Panel ── */
+.term-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    min-height: 0;
+    padding: 20px 32px 28px;
+    position: relative;
+}
+
+/* corner bracket — top left */
+.term-panel::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 14px;
+    height: 14px;
+    border-top: 1px solid rgba(255, 176, 0, 0.38);
+    border-left: 1px solid rgba(255, 176, 0, 0.38);
+    pointer-events: none;
+}
+
+/* corner bracket — bottom right */
+.term-panel::after {
+    content: '';
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 14px;
+    height: 14px;
+    border-bottom: 1px solid rgba(255, 176, 0, 0.38);
+    border-right: 1px solid rgba(255, 176, 0, 0.38);
+    pointer-events: none;
+}
+
+/* ── Panel title bar ── */
+.term-panel-titlebar {
+    display: flex;
+    align-items: center;
+    padding-bottom: 14px;
+    margin-bottom: 22px;
+    border-bottom: 1px solid rgba(255, 176, 0, 0.16);
+    flex-shrink: 0;
+}
+
+.term-panel-title {
+    font-size: 0.80rem;
+    font-weight: 700;
+    letter-spacing: 0.20em;
+    color: #ffb000;
+}
+
+.term-panel-title::after {
+    content: '_';
+    margin-left: 2px;
+    color: rgba(255, 176, 0, 0.65);
+    animation: cursor-blink 1.1s step-end infinite;
+}
+
+@keyframes cursor-blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0; }
+}
+
+/* ── Scrollable content area ── */
+.term-panel-content {
+    flex: 1;
+    overflow-y: auto;
+    min-height: 0;
+    padding-right: 10px;
+}
+
+.term-panel-content::-webkit-scrollbar        { width: 3px; }
+.term-panel-content::-webkit-scrollbar-track  { background: rgba(255, 176, 0, 0.05); }
+.term-panel-content::-webkit-scrollbar-thumb  { background: rgba(255, 176, 0, 0.28); border-radius: 2px; }
+
+/* ── Content typography ── */
+.term-panel-content p {
+    color: rgba(255, 176, 0, 0.78);
+    font-size: 0.90rem;
+    line-height: 1.75;
+    margin: 0 0 14px;
+}
+
+.term-panel-content strong {
+    color: #ffb000;
+    font-weight: 600;
+}
+
+/* ── Entry blocks (experience / projects / education) ── */
+.term-entry {
     margin-bottom: 30px;
 }
 
-.header h1 {
-    font-size: 3rem;
-    color: #00ccff;  /* Bright blue for emphasis */
-    text-shadow: 0 0 10px rgba(0, 204, 255, 0.8); /* Glowing effect */
-}
-
-.header p {
-    font-size: 1.5rem;
-    font-weight: 300;
-    margin-top: 10px;
-}
-
-/* Objective Section */
-.objective h2 {
-    color: #00ccff;
-    font-size: 2rem;
-}
-
-.objective p {
-    font-size: 1.2rem;
-}
-
-/* Education Section */
-.education h2 {
-    color: #00ccff;
-    font-size: 2rem;
-}
-
-.education ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.education ul li {
-    margin-bottom: 20px;
-    font-size: 1.2rem;
-}
-
-.education strong {
-    font-size: 1.4rem;
-    color: #00ccff;
-}
-
-/* Experience Section */
-.experience h2 {
-    color: #00ccff;
-    font-size: 2rem;
-}
-
-.job {
-    margin-bottom: 20px;
-}
-
-.job h3 {
-    font-size: 1.6rem;
-    color: #00ccff;
-}
-
-.job p {
-    font-size: 1.2rem;
-}
-
-/* Skills Section */
-.skills h2 {
-    color: #00ccff;
-    font-size: 2rem;
-}
-
-.skills p {
-    font-size: 1.2rem;
-}
-
-/* Self-Development Section */
-.self-development h2 {
-    color: #00ccff;
-    font-size: 2rem;
-}
-
-.self-dev h3 {
-    font-size: 1.6rem;
-    color: #00ccff;
-}
-
-/* Resume Button */
-.resume-button {
-    padding: 15px 25px;
-    font-size: 1.2rem;
-    background-color: #00ccff;  /* Space-themed bright blue */
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    font-weight: bold;
-    margin-top: 20px;
-}
-
-.resume-button:hover {
-    background-color: #0099cc;  /* Slightly darker blue on hover */
-    transform: scale(1.1);  /* Slight scale-up effect */
-}
-
-.resume-button:focus {
-    outline: none; /* Remove default focus outline */
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .resume-container {
-        padding: 20px;
-    }
-
-    .header h1 {
-        font-size: 2.5rem;
-    }
-
-    .header p {
-        font-size: 1.2rem;
-    }
-
-    .objective h2,
-    .education h2,
-    .experience h2,
-    .skills h2,
-    .self-development h2 {
-        font-size: 1.6rem;
-    }
-
-    .job h3,
-    .self-dev h3 {
-        font-size: 1.4rem;
-    }
-}
-/* Container for the scrolling text */
-.star-wars-crawl {
-    position: relative;
-    width: 100%;
-    height: 100vh; /* Full height of the viewport */
-    overflow: hidden; /* Hide anything outside of the container */
-    background-color: black; /* Black background for space theme */
-    color: #fff; /* White text color for the crawl */
+.term-entry-header {
     display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: flex-end; /* Align at the bottom to simulate the beginning of the crawl */
-    perspective: 400px; /* Adds a 3D perspective */
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 6px 16px;
+    margin-bottom: 8px;
 }
 
-/* The text that will scroll up */
-.crawl-text {
+.term-entry-title {
+    color: #ffb000;
+    font-size: 0.90rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+}
+
+.term-entry-meta {
+    color: rgba(255, 176, 0, 0.42);
+    font-size: 0.76rem;
+    white-space: nowrap;
+}
+
+.term-entry-org {
+    color: rgba(255, 176, 0, 0.50);
+    font-size: 0.82rem;
+    margin: 4px 0 0;
+}
+
+/* ── Bullet list ── */
+.term-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.term-list li {
+    position: relative;
+    padding: 4px 0 4px 18px;
+    font-size: 0.88rem;
+    color: rgba(255, 176, 0, 0.78);
+    line-height: 1.68;
+}
+
+.term-list li::before {
+    content: '–';
     position: absolute;
-    bottom: -100%; /* Start off-screen */
-    text-align: center;
-    font-family: 'Arial', sans-serif;
-    font-size: 2rem;
-    animation: crawl 60s linear infinite; /* Scroll animation */
-    transform-origin: bottom center; /* Start the crawl from the bottom */
+    left: 0;
+    color: rgba(255, 176, 0, 0.35);
 }
 
-/* Keyframe animation for the scrolling effect */
-@keyframes crawl {
-    0% {
-        transform: rotateX(20deg) translateY(100%);
+/* ── Tag pills ── */
+.term-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 8px 0 12px;
+}
+
+.term-tag {
+    font-size: 0.73rem;
+    padding: 3px 10px;
+    border: 1px solid rgba(255, 176, 0, 0.28);
+    border-radius: 2px;
+    color: rgba(255, 176, 0, 0.75);
+    letter-spacing: 0.04em;
+}
+
+.term-tag--learning {
+    border-style: dashed;
+    color: rgba(255, 176, 0, 0.50);
+}
+
+/* ── Skills ── */
+.term-skills {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.term-skill-group {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.term-skill-label {
+    min-width: 148px;
+    flex-shrink: 0;
+    font-size: 0.74rem;
+    font-weight: 600;
+    letter-spacing: 0.10em;
+    color: rgba(255, 176, 0, 0.48);
+    padding-top: 5px;
+}
+
+/* ── Contact ── */
+.term-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.term-contact-row {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.term-contact-label {
+    min-width: 88px;
+    flex-shrink: 0;
+    font-size: 0.70rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: rgba(255, 176, 0, 0.40);
+}
+
+.term-link {
+    color: rgba(255, 176, 0, 0.78);
+    text-decoration: none;
+    font-size: 0.88rem;
+    transition: color 0.12s;
+}
+
+.term-link:hover {
+    color: #ffb000;
+    text-decoration: underline;
+}
+
+/* ── Boot overlay ── */
+.term-boot-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    background: #0a0800;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 12%;
+    opacity: 1;
+    transition: opacity 0.4s ease;
+    pointer-events: all;
+}
+
+.term-boot-overlay--out {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.term-boot-line {
+    font-size: 0.88rem;
+    font-family: 'IBM Plex Mono', 'Courier New', Courier, monospace;
+    letter-spacing: 0.10em;
+    color: rgba(255, 176, 0, 0.88);
+    line-height: 1;
+    margin: 5px 0;
+    white-space: pre;
+}
+
+.term-boot-cursor {
+    display: inline-block;
+    margin-left: 1px;
+    animation: cursor-blink 0.8s step-end infinite;
+}
+
+/* ── Content stream-in ── */
+@keyframes term-fade-up {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0);   }
+}
+
+.term-panel-content > p,
+.term-panel-content .term-entry,
+.term-panel-content .term-skill-group,
+.term-panel-content .term-contact-row {
+    opacity: 0;
+    animation: term-fade-up 0.30s ease forwards;
+}
+
+/* stagger delays — nth-child counts within each block's parent */
+.term-panel-content > p:nth-child(1),
+.term-panel-content .term-entry:nth-child(1),
+.term-panel-content .term-skill-group:nth-child(1),
+.term-panel-content .term-contact-row:nth-child(1) { animation-delay: 0ms;   }
+
+.term-panel-content .term-entry:nth-child(2),
+.term-panel-content .term-skill-group:nth-child(2),
+.term-panel-content .term-contact-row:nth-child(2) { animation-delay: 55ms;  }
+
+.term-panel-content .term-entry:nth-child(3),
+.term-panel-content .term-skill-group:nth-child(3),
+.term-panel-content .term-contact-row:nth-child(3) { animation-delay: 110ms; }
+
+.term-panel-content .term-entry:nth-child(4),
+.term-panel-content .term-skill-group:nth-child(4),
+.term-panel-content .term-contact-row:nth-child(4) { animation-delay: 165ms; }
+
+.term-panel-content .term-skill-group:nth-child(5),
+.term-panel-content .term-contact-row:nth-child(5) { animation-delay: 220ms; }
+
+.term-panel-content .term-skill-group:nth-child(6) { animation-delay: 275ms; }
+.term-panel-content .term-skill-group:nth-child(7) { animation-delay: 330ms; }
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+    .term-panel-title::after       { animation: none; opacity: 1; }
+    .term-boot-overlay             { transition: none; }
+    .term-boot-cursor              { animation: none; opacity: 1; }
+    .term-nav-item,
+    .term-exit-btn,
+    .term-download-btn,
+    .term-link                     { transition: none; }
+
+    .term-panel-content > p,
+    .term-panel-content .term-entry,
+    .term-panel-content .term-skill-group,
+    .term-panel-content .term-contact-row {
+        animation: none;
+        opacity: 1;
     }
-    100% {
-        transform: rotateX(20deg) translateY(-100%); /* End the scroll */
+}
+
+/* ── Narrow screens — sidebar stacks above panel ── */
+@media (max-width: 600px) {
+    .term-body          { flex-direction: column; }
+
+    .term-sidebar {
+        width: 100%;
+        flex-direction: row;
+        overflow-x: auto;
+        overflow-y: hidden;
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 176, 0, 0.18);
+        padding: 0;
+        flex-shrink: 0;
     }
-}
 
-/* Optional: Add some spacing between lines in the crawl */
-.crawl-text h1,
-.crawl-text h2,
-.crawl-text p {
-    margin: 30px 0;
-}
-/* Style for the Resume Button */
-.download-button-container {
-    text-align: center;
-    margin-top: 20px;
-    z-index: 1; /* Ensure the button is above the content */
-}
+    .term-nav-item {
+        padding: 12px 16px;
+        border-left: none;
+        border-bottom: 2px solid transparent;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
 
-.download-button {
-    padding: 15px 25px;
-    font-size: 1.2rem;
-    background-color: #00ccff;  /* Space-themed bright blue */
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    font-weight: bold;
-}
+    .term-nav-item--active {
+        background: #ffb000;
+        border-bottom-color: transparent;
+    }
 
-.download-button:hover {
-    background-color: #0099cc;  /* Slightly darker blue on hover */
-    transform: scale(1.1);  /* Slight scale-up effect */
-}
-
-.download-button:focus {
-    outline: none; /* Remove default focus outline */
+    .term-label { display: none; }
 }

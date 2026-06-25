@@ -1,12 +1,14 @@
 import React from 'react';
-import './LoadingScreen.css';  // Add a CSS file for the loading screen styles
+import './LoadingScreen.css';
 
 function LoadingScreen() {
     return (
         <div className="loadingScreen">
-            <h2>Thank You For Your Interest</h2>
-            <br/>
-            <div className="loader"></div>
+            <p className="loading-label">&gt; LOADING PORTFOLIO</p>
+            <div className="loader-track">
+                <div className="loader-scan"></div>
+            </div>
+            <p className="loading-sub">PLEASE STAND BY</p>
         </div>
     );
 }

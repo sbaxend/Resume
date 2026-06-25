@@ -5,94 +5,74 @@
     align-items: center;
     height: 100vh;
     cursor: pointer;
-    background: #000; /* Dark background */
-    color: white;
+    background-color: #0a0800;
+    color: #ffb000;
     text-align: center;
     position: relative;
     overflow: hidden;
 }
 
+/* Amber stars — unscoped so they apply to the DOM-injected divs */
 .star {
     position: absolute;
     width: 2px;
     height: 2px;
-    background: white;
-    box-shadow: 0 0 5px white;
+    background: rgba(255, 176, 0, 0.55);
     border-radius: 50%;
     opacity: 0;
     animation: twinkle 2s infinite ease-in-out;
 }
 
-/* Generate multiple stars */
-.startingScreen::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: transparent;
+@keyframes twinkle {
+    0%, 100% { opacity: 0; }
+    50%       { opacity: 1; }
+}
+
+/* Small terminal prefix line */
+.splash-label {
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.16em;
+    color: rgba(255, 176, 0, 0.55);
+    margin: 0 0 20px;
+    position: relative;
     z-index: 1;
 }
 
-@keyframes twinkle {
-    0%, 100% {
-        opacity: 0;
-    }
-    50% {
-        opacity: 1;
-    }
-}
-
-
+/* Main name — phosphor glow pulse */
 .resumeTitle {
-    margin-bottom: 20px;
-    font-size: 24px;
-    animation: grow-and-shrink 2s ease-in-out infinite alternate;
-    /* This title will not be part of the fading effect */
+    font-size: clamp(1.75rem, 5vw, 2.75rem);
+    font-weight: 700;
+    color: #ffd080;
+    letter-spacing: 0.10em;
+    margin: 0 0 28px;
+    position: relative;
+    z-index: 1;
+    animation: phosphor-pulse 3s ease-in-out infinite alternate;
 }
 
+@keyframes phosphor-pulse {
+    0%   { text-shadow: 0 0 18px rgba(255, 176, 0, 0.18); }
+    100% { text-shadow: 0 0 40px rgba(255, 176, 0, 0.52); }
+}
+
+/* Click prompt with blinking cursor */
 .startText {
-    font-size: 32px;
-    animation: fadeInOut 3s infinite;
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    color: rgba(255, 176, 0, 0.72);
+    margin: 0;
+    position: relative;
+    z-index: 1;
 }
 
-@keyframes fadeInOut {
-    0%, 100% { opacity: 0; }
-    50% { opacity: 1; }
+.startText::after {
+    content: '_';
+    animation: cursor-blink 1.1s step-end infinite;
 }
 
-.resumeTitle {
-    margin-bottom: 20px;
-    font-size: 36px;
-    color: white;
-    text-shadow: 0 0 10px #00b3ff;
-    animation: grow-and-shrink 3s ease-in-out infinite alternate;
-  }
-  
-  /* @keyframes neonGlow {
-    0% {
-      text-shadow: 0 0 10px #00b3ff, 0 0 20px #00b3ff, 0 0 30px #00b3ff, 0 0 40px #ff00de, 0 0 70px #ff00de, 0 0 80px #ff00de, 0 0 100px #ff00de, 0 0 150px #ff00de;
-    }
-    25% {
-      text-shadow: 0 0 10px #ffea00, 0 0 20px #ffea00, 0 0 30px #ffea00, 0 0 40px #ff00de, 0 0 70px #ff00de, 0 0 80px #ff00de, 0 0 100px #ff00de, 0 0 150px #ff00de;
-    }
-    50% {
-      text-shadow: 0 0 10px #00ff15, 0 0 20px #00ff15, 0 0 30px #00ff15, 0 0 40px #00ff15, 0 0 70px #ff00de, 0 0 80px #ff00de, 0 0 100px #ff00de, 0 0 150px #ff00de;
-    }
-    75% {
-      text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #ff0000, 0 0 40px #ff0000, 0 0 70px #ff00de, 0 0 80px #ff00de, 0 0 100px #ff00de, 0 0 150px #ff00de;
-    }
-    100% {
-      text-shadow: 0 0 10px #00b3ff, 0 0 20px #00b3ff, 0 0 30px #00b3ff, 0 0 40px #00b3ff, 0 0 70px #00b3ff, 0 0 80px #00b3ff, 0 0 100px #00b3ff, 0 0 150px #00b3ff;
-    }
-  } */
-
-  @keyframes grow-and-shrink {
-    0%, 100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.5);
-    }
+@keyframes cursor-blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0; }
 }

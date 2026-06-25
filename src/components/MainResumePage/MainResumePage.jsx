@@ -1,114 +1,352 @@
-import React, { useEffect, useState }from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import './MainResumePage.css';
-function MainResumePage() {
-    const [hasScrolled, setHasScrolled] = useState(false);
 
-    // Handle the button visibility after the scroll animation
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setHasScrolled(true); // Show the button after scroll is complete
-        }, 60000); // Match the scroll time (60s)
-        
-        return () => clearTimeout(timer); // Cleanup the timer if component unmounts
-    }, []);
-    useEffect(() => {
-        
-        // Function to handle keydown events for manual scrolling
-        const handleKeyDown = (event) => {
-            if (event.key === "ArrowDown" || event.key === "ArrowUp") {
-                // Allow scrolling with the arrow keys
-                const scrollContainer = document.querySelector('.star-wars-crawl');
-                scrollContainer.scrollBy({
-                    top: event.key === "ArrowDown" ? 100 : -100,  // Scroll 100px up or down
-                    behavior: 'smooth', // Smooth scrolling
-                });
-            }
-        };
+const SECTIONS = [
+    { slug: 'summary',    label: 'SUMMARY'    },
+    { slug: 'experience', label: 'EXPERIENCE' },
+    { slug: 'projects',   label: 'PROJECTS'   },
+    { slug: 'skills',     label: 'SKILLS'     },
+    { slug: 'education',  label: 'EDUCATION'  },
+    { slug: 'contact',    label: 'CONTACT'    },
+];
 
-        // Add event listener for keyboard scroll control
-        window.addEventListener('keydown', handleKeyDown);
+const CONTENT = {
+    summary: (
+        <p>
+            Full-stack developer (Prime Digital Academy, 2023) with hands-on experience
+            across the project lifecycle in React, Node.js/Express, and PostgreSQL, plus
+            Python/Flask. Builds and ships responsive web applications and RESTful APIs.
+            Backed by 7+ years in operations and compliance-focused roles where accuracy
+            and accountability were non-negotiable — bringing a level of reliability and
+            attention to detail that is rare in early-career developers.
+        </p>
+    ),
 
-        // Cleanup event listener when the component unmounts
-        return () => {
-            window.removeEventListener('keydown', handleKeyDown);
-        };
-    }, []);
-    return (
-        <div className="resume-container">
-            <div className="star-wars-crawl">
-                <div className="crawl-text">
-                    <header className="header">
-                        <h1>Seth Baxendell</h1>
-                        <p>Full-Stack Developer | Innovator | Problem Solver</p>
-                    </header>
-
-                    <section className="objective">
-                        <h2>Objective</h2>
-                        <p>
-                            Dedicated Full-Stack Developer with expertise in HTML, CSS, JavaScript, and React,
-                            seeking to apply my technical skills and problem-solving abilities to enhance user experiences
-                            and drive innovation in a dynamic environment.
-                        </p>
-                    </section>
-
-                    <section className="education">
-                        <h2>Education</h2>
-                        <ul>
-                            <li>
-                                <strong>PRIME DIGITAL ACADEMY</strong> – Full-Stack Developer Student (Jan 2023 - Jul 2023)
-                                <p>Minneapolis, MN (Remote)</p>
-                                <p>Intensive coding program focusing on full-stack software development including JavaScript, HTML 5, CSS, React, jQuery, PostgreSQL, and Node.js.</p>
-                            </li>
-                            <li>
-                                <strong>SAINT PETERSBURG COLLEGE</strong> – Associate in Arts Degree / Computer Science Information Major (2018-2022)
-                                <p>Saint Petersburg, FL (Hybrid)</p>
-                                <p>Courses included: Chemistry, Intermediate Algebra, Music Appreciation, Music and Computers, Composition</p>
-                            </li>
-                        </ul>
-                    </section>
-
-                    <section className="experience">
-                        <h2>Experience</h2>
-                        <div className="job">
-                            <h3>Full-Stack Software Development Student (Prime Digital Academy)</h3>
-                            <p><strong>Solo Project:</strong> Developed a vehicle maintenance tracking application. Handled full-stack development, project management, and technical documentation.</p>
-                            <p><strong>Client Project:</strong> Collaborated with a team to develop a mental health-focused mobile app. Managed client requirements, contributed to front-end and back-end development, and coordinated project handover.</p>
-                        </div>
-                        <div className="job">
-                            <h3>City of Saint Petersburg - Maintenance Mechanic II, Marina Assistant, Maintenance Worker I</h3>
-                            <p>Saint Petersburg, FL (2016-2023)</p>
-                            <p>Led projects and teams, demonstrating leadership and problem-solving abilities. Conducted maintenance tasks across city infrastructure, showcasing adaptability and technical skills.</p>
-                        </div>
-                        <div className="job">
-                            <h3>USA Construction Group, Inc. - Technician</h3>
-                            <p>Saint Petersburg, FL (2015-2017)</p>
-                            <p>Installed navigational markers, adhering to various regulatory standards, highlighting precision and compliance skills.</p>
-                        </div>
-                    </section>
-
-                    <section className="self-development">
-                        <h2>Self-Development</h2>
-                        <div className="self-dev">
-                            <h3>Hybrid Crypto Trading Bot Developer (2023 - Present)</h3>
-                            <p>Building a Flask-based application for portfolio management, trading analytics, and real-time crypto insights using APIs like CoinGecko.</p>
-                            <p>Implemented data visualization and risk analysis tools to help users make informed trading decisions.</p>
-                        </div>
-                    </section>
-
-                    <section className="skills">
-                        <h2>Technical & Soft Skills</h2>
-                        <p><strong>Technical Skills:</strong> JavaScript, React, Node.js, Express, Redux, Saga, SQL, TypeScript, Python (basic), C# (basic), Jest, AWS, and more.</p>
-                        <p><strong>Soft Skills:</strong> Growth mindset, adaptability, creativity, problem-solving, teamwork, critical thinking.</p>
-                    </section>
+    experience: (
+        <div>
+            <div className="term-entry">
+                <div className="term-entry-header">
+                    <span className="term-entry-title">Freelance Web Developer</span>
+                    <span className="term-entry-meta">Remote · 2023 – Present</span>
                 </div>
+                <ul className="term-list">
+                    <li>Design, build, and deploy production websites for small businesses, handling the work end to end from design through deployment.</li>
+                    <li><strong>PaintCraft MN —</strong> production marketing site for a Minnesota painting company: multi-page service catalog, hero video, embedded Google reviews, Resend-powered contact form. Astro + Tailwind CSS, deployed on Vercel.</li>
+                </ul>
             </div>
-            {hasScrolled && (
-                <div className="download-button-container">
-                    <a href="/resume.pdf" download="Seth_Baxendell_Resume.pdf">
-                        <button className="download-button">Download PDF</button>
-                    </a>
+
+            <div className="term-entry">
+                <div className="term-entry-header">
+                    <span className="term-entry-title">Full-Stack Developer, Immersive Program</span>
+                    <span className="term-entry-meta">Prime Digital Academy · Remote · Jan – Jul 2023</span>
+                </div>
+                <ul className="term-list">
+                    <li>Built responsive full-stack web applications with React, Node.js/Express, and PostgreSQL through complete project lifecycles.</li>
+                    <li>Developed RESTful APIs and integrated front-end and back-end components.</li>
+                    <li>Collaborated in Agile sprints including code reviews, daily standups, and testing.</li>
+                </ul>
+            </div>
+
+            <div className="term-entry">
+                <div className="term-entry-header">
+                    <span className="term-entry-title">Maintenance Mechanic II / Marina Assistant</span>
+                    <span className="term-entry-meta">City of Saint Petersburg, FL · 2016 – 2023</span>
+                </div>
+                <ul className="term-list">
+                    <li>Managed marina operations and customer reservations via the Dockwa platform; supported daily reporting and cross-department documentation.</li>
+                </ul>
+            </div>
+
+            <div className="term-entry">
+                <div className="term-entry-header">
+                    <span className="term-entry-title">Technician</span>
+                    <span className="term-entry-meta">USA Construction Group, Inc. · St. Petersburg, FL · 2015 – 2017</span>
+                </div>
+                <ul className="term-list">
+                    <li>Installed navigational markers to regulatory standards with an emphasis on precision and safety compliance.</li>
+                </ul>
+            </div>
+        </div>
+    ),
+
+    projects: (
+        <div>
+            <div className="term-entry">
+                <div className="term-entry-header">
+                    <span className="term-entry-title">Crypto Portfolio Tracker</span>
+                </div>
+                <div className="term-tags">
+                    <span className="term-tag">Python</span>
+                    <span className="term-tag">Flask</span>
+                    <span className="term-tag">CoinGecko API</span>
+                    <span className="term-tag">Docker</span>
+                </div>
+                <p>Flask app for real-time portfolio analytics from external APIs, with error handling and logging for stability; containerized with Docker.</p>
+            </div>
+
+            <div className="term-entry">
+                <div className="term-entry-header">
+                    <span className="term-entry-title">Vehicle Maintenance Tracker</span>
+                    <span className="term-entry-meta">Prime solo project</span>
+                </div>
+                <div className="term-tags">
+                    <span className="term-tag">JavaScript</span>
+                    <span className="term-tag">Node.js/Express</span>
+                    <span className="term-tag">PostgreSQL</span>
+                </div>
+                <p>Full-stack application for logging and scheduling vehicle service history.</p>
+            </div>
+
+            <div className="term-entry">
+                <div className="term-entry-header">
+                    <span className="term-entry-title">Mental Health &amp; Finance Mobile App</span>
+                    <span className="term-entry-meta">Prime client project</span>
+                </div>
+                <div className="term-tags">
+                    <span className="term-tag">React Native</span>
+                    <span className="term-tag">Node.js/Express</span>
+                    <span className="term-tag">PostgreSQL</span>
+                </div>
+                <p>Team-built client mobile app supporting mental-health and financial decision-making; contributed full-stack across the project lifecycle.</p>
+            </div>
+        </div>
+    ),
+
+    skills: (
+        <div className="term-skills">
+            {[
+                { group: 'Languages',           items: ['JavaScript', 'Python', 'HTML5/CSS3', 'SQL'] },
+                { group: 'Frontend',            items: ['React', 'Astro', 'Tailwind CSS'] },
+                { group: 'Backend',             items: ['Node.js/Express', 'Flask', 'REST APIs'] },
+                { group: 'Database',            items: ['PostgreSQL'] },
+                { group: 'Mobile',              items: ['React Native'] },
+                { group: 'Tools & Deployment',  items: ['Git/GitHub', 'Docker', 'Vercel', 'Figma'] },
+                { group: 'Currently Learning',  items: ['TypeScript', 'Next.js'], learning: true },
+            ].map(({ group, items, learning }) => (
+                <div key={group} className="term-skill-group">
+                    <span className="term-skill-label">{group}</span>
+                    <div className="term-tags">
+                        {items.map(item => (
+                            <span key={item} className={`term-tag${learning ? ' term-tag--learning' : ''}`}>
+                                {item}
+                            </span>
+                        ))}
+                    </div>
+                </div>
+            ))}
+        </div>
+    ),
+
+    education: (
+        <div>
+            <div className="term-entry">
+                <div className="term-entry-header">
+                    <span className="term-entry-title">Full-Stack Software Development</span>
+                    <span className="term-entry-meta">Jan – Jul 2023</span>
+                </div>
+                <p className="term-entry-org">Prime Digital Academy · Remote (Minneapolis, MN)</p>
+            </div>
+
+            <div className="term-entry">
+                <div className="term-entry-header">
+                    <span className="term-entry-title">A.A. Coursework, Computer &amp; Information Science</span>
+                    <span className="term-entry-meta">2018 – 2022</span>
+                </div>
+                <p className="term-entry-org">Saint Petersburg College, FL</p>
+            </div>
+        </div>
+    ),
+
+    contact: (
+        <div className="term-contact">
+            <div className="term-contact-row">
+                <span className="term-contact-label">LOCATION</span>
+                <span>Minneapolis, MN (Remote)</span>
+            </div>
+            <div className="term-contact-row">
+                <span className="term-contact-label">PHONE</span>
+                <a href="tel:+19526938402" className="term-link">(952) 693-8402</a>
+            </div>
+            <div className="term-contact-row">
+                <span className="term-contact-label">EMAIL</span>
+                <a href="mailto:sethbaxendell1@gmail.com" className="term-link">sethbaxendell1@gmail.com</a>
+            </div>
+            <div className="term-contact-row">
+                <span className="term-contact-label">LINKEDIN</span>
+                <a
+                    href="https://linkedin.com/in/sethbaxendell"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="term-link"
+                >
+                    linkedin.com/in/sethbaxendell
+                </a>
+            </div>
+            <div className="term-contact-row">
+                <span className="term-contact-label">GITHUB</span>
+                <a
+                    href="https://github.com/sbaxend"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="term-link"
+                >
+                    github.com/sbaxend
+                </a>
+            </div>
+        </div>
+    ),
+};
+
+const BOOT_LINES = [
+    '> SYSTEM ONLINE',
+    '> MOUNTING PERSONNEL ARCHIVE ...',
+    '> LOADING FILE: BAXENDELL_S.rec',
+    '> DECRYPTING ... OK',
+    '> ACCESS GRANTED',
+];
+
+const CHAR_MS  = 28;
+const LINE_GAP = 180;
+const END_GAP  = 350;
+const FADE_MS  = 400;
+
+const GLYPHS = 'ABCDEFGHJKLMNPQRSTUVWXYZ0123456789#%*<>_/';
+
+function MainResumePage() {
+    const [active, setActive] = useState('summary');
+
+    const [booted, setBooted] = useState(
+        () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    );
+    const [displayLines, setDisplayLines] = useState([]);
+    const [fadeOut, setFadeOut]           = useState(false);
+
+    const [displayTitle, setDisplayTitle] = useState('SUMMARY');
+    const isFirstRender                   = useRef(true);
+
+    useEffect(() => {
+        document.body.style.overflow = 'hidden';
+        return () => { document.body.style.overflow = ''; };
+    }, []);
+
+    useEffect(() => {
+        if (booted) return;
+
+        const ids = [];
+        let t = 0;
+
+        BOOT_LINES.forEach((line, li) => {
+            ids.push(setTimeout(() => {
+                setDisplayLines(prev => [...prev, '']);
+            }, t));
+
+            for (let ci = 0; ci < line.length; ci++) {
+                t += CHAR_MS;
+                const slice = line.slice(0, ci + 1);
+                const capturedLi = li;
+                ids.push(setTimeout(() => {
+                    setDisplayLines(prev => {
+                        const next = [...prev];
+                        next[capturedLi] = slice;
+                        return next;
+                    });
+                }, t));
+            }
+
+            t += LINE_GAP;
+        });
+
+        ids.push(setTimeout(() => setFadeOut(true), t + END_GAP));
+        ids.push(setTimeout(() => setBooted(true), t + END_GAP + FADE_MS));
+
+        return () => ids.forEach(clearTimeout);
+    }, []);
+
+    useEffect(() => {
+        const label = SECTIONS.find(s => s.slug === active).label;
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        if (isFirstRender.current || reducedMotion) {
+            isFirstRender.current = false;
+            setDisplayTitle(label);
+            return;
+        }
+        isFirstRender.current = false;
+
+        let frame = 0;
+        const id = setInterval(() => {
+            frame++;
+            const scrambled = label
+                .split('')
+                .map((char, i) => {
+                    if (char === ' ') return ' ';
+                    if (i < frame) return char;
+                    return GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
+                })
+                .join('');
+            setDisplayTitle(scrambled);
+            if (frame >= label.length) {
+                clearInterval(id);
+                setDisplayTitle(label);
+            }
+        }, 26);
+
+        return () => clearInterval(id);
+    }, [active]);
+
+    return (
+        <div className="terminal-page">
+            <header className="term-statusbar">
+                <div className="term-statusbar-left">
+                    <Link to="/user" className="term-exit-btn">[ ← EXIT ]</Link>
+                    <span className="term-label">PERSONNEL TERMINAL</span>
+                </div>
+                <a
+                    href="/SBResume.pdf"
+                    download="Seth_Baxendell_Resume.pdf"
+                    className="term-download-btn"
+                >
+                    Download Résumé
+                </a>
+            </header>
+
+            {!booted && (
+                <div className={`term-boot-overlay${fadeOut ? ' term-boot-overlay--out' : ''}`}>
+                    {displayLines.map((line, i) => (
+                        <div key={i} className="term-boot-line">
+                            {line}
+                            {i === displayLines.length - 1 && (
+                                <span className="term-boot-cursor">_</span>
+                            )}
+                        </div>
+                    ))}
                 </div>
             )}
+
+            <div className="term-body">
+                <nav className="term-sidebar" aria-label="Resume sections">
+                    {SECTIONS.map(({ slug, label }) => (
+                        <button
+                            key={slug}
+                            className={`term-nav-item${active === slug ? ' term-nav-item--active' : ''}`}
+                            onClick={() => setActive(slug)}
+                            aria-current={active === slug ? 'page' : undefined}
+                        >
+                            {label}
+                        </button>
+                    ))}
+                </nav>
+
+                <main className="term-panel" aria-live="polite">
+                    <div className="term-panel-titlebar">
+                        <span className="term-panel-title">{displayTitle}</span>
+                    </div>
+                    <div className="term-panel-content" key={active}>
+                        {CONTENT[active]}
+                    </div>
+                </main>
+            </div>
         </div>
     );
 }
