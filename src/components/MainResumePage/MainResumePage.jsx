@@ -1,5 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import {
+    profile,
+    contact,
+    skillGroups,
+    featuredProjects,
+    experience,
+    education,
+} from '../../data/resume';
 import './MainResumePage.css';
 
 const SECTIONS = [
@@ -11,150 +19,87 @@ const SECTIONS = [
     { slug: 'contact',    label: 'CONTACT'    },
 ];
 
+const stripProtocol = (url) => (url || '').replace(/^https?:\/\//, '');
+
+const formatEntryMeta = (org, location, start, end) => {
+    const lead = [org, location].filter((v, i, arr) => v && arr.indexOf(v) === i);
+    return [...lead, `${start} – ${end}`].join(' · ');
+};
+
 const CONTENT = {
     summary: (
-        <p>
-            Full-stack developer (Prime Digital Academy, 2023) with hands-on experience
-            across the project lifecycle in React, Node.js/Express, and PostgreSQL, plus
-            Python/Flask. Builds and ships responsive web applications and RESTful APIs.
-            Backed by 7+ years in operations and compliance-focused roles where accuracy
-            and accountability were non-negotiable — bringing a level of reliability and
-            attention to detail that is rare in early-career developers.
-        </p>
+        <p>{profile.longBio}</p>
     ),
 
     experience: (
         <div>
-            <div className="term-entry">
-                <div className="term-entry-header">
-                    <span className="term-entry-title">Freelance Web Developer</span>
-                    <span className="term-entry-meta">Remote · 2023 – Present</span>
-                </div>
-                <ul className="term-list">
-                    <li>Design, build, and deploy production websites for small businesses, handling the work end to end from design through deployment.</li>
-                    <li><strong>PaintCraft MN —</strong> production marketing site for a Minnesota painting company: multi-page service catalog, hero video, embedded Google reviews, Resend-powered contact form. Astro + Tailwind CSS, deployed on Vercel.</li>
-                </ul>
-            </div>
-
-            <div className="term-entry">
-                <div className="term-entry-header">
-                    <span className="term-entry-title">Full-Stack Developer, Immersive Program</span>
-                    <span className="term-entry-meta">Prime Digital Academy · Remote · Jan – Jul 2023</span>
-                </div>
-                <ul className="term-list">
-                    <li>Built responsive full-stack web applications with React, Node.js/Express, and PostgreSQL through complete project lifecycles.</li>
-                    <li>Developed RESTful APIs and integrated front-end and back-end components.</li>
-                    <li>Collaborated in Agile sprints including code reviews, daily standups, and testing.</li>
-                </ul>
-            </div>
-
-            <div className="term-entry">
-                <div className="term-entry-header">
-                    <span className="term-entry-title">Maintenance Mechanic II / Marina Assistant</span>
-                    <span className="term-entry-meta">City of Saint Petersburg, FL · 2016 – 2023</span>
-                </div>
-                <ul className="term-list">
-                    <li>Managed marina operations and customer reservations via the Dockwa platform; supported daily reporting and cross-department documentation.</li>
-                </ul>
-            </div>
-
-            <div className="term-entry">
-                <div className="term-entry-header">
-                    <span className="term-entry-title">Technician</span>
-                    <span className="term-entry-meta">USA Construction Group, Inc. · St. Petersburg, FL · 2015 – 2017</span>
-                </div>
-                <ul className="term-list">
-                    <li>Installed navigational markers to regulatory standards with an emphasis on precision and safety compliance.</li>
-                </ul>
-            </div>
-        </div>
-    ),
-
-    projects: (
-        <div>
-            <div className="term-entry">
-                <div className="term-entry-header">
-                    <span className="term-entry-title">Crypto Portfolio Tracker</span>
-                </div>
-                <div className="term-tags">
-                    <span className="term-tag">Python</span>
-                    <span className="term-tag">Flask</span>
-                    <span className="term-tag">CoinGecko API</span>
-                    <span className="term-tag">Docker</span>
-                </div>
-                <p>Flask app for real-time portfolio analytics from external APIs, with error handling and logging for stability; containerized with Docker.</p>
-            </div>
-
-            <div className="term-entry">
-                <div className="term-entry-header">
-                    <span className="term-entry-title">Vehicle Maintenance Tracker</span>
-                    <span className="term-entry-meta">Prime solo project</span>
-                </div>
-                <div className="term-tags">
-                    <span className="term-tag">JavaScript</span>
-                    <span className="term-tag">Node.js/Express</span>
-                    <span className="term-tag">PostgreSQL</span>
-                </div>
-                <p>Full-stack application for logging and scheduling vehicle service history.</p>
-            </div>
-
-            <div className="term-entry">
-                <div className="term-entry-header">
-                    <span className="term-entry-title">Mental Health &amp; Finance Mobile App</span>
-                    <span className="term-entry-meta">Prime client project</span>
-                </div>
-                <div className="term-tags">
-                    <span className="term-tag">React Native</span>
-                    <span className="term-tag">Node.js/Express</span>
-                    <span className="term-tag">PostgreSQL</span>
-                </div>
-                <p>Team-built client mobile app supporting mental-health and financial decision-making; contributed full-stack across the project lifecycle.</p>
-            </div>
-        </div>
-    ),
-
-    skills: (
-        <div className="term-skills">
-            {[
-                { group: 'Languages',           items: ['JavaScript', 'Python', 'HTML5/CSS3', 'SQL'] },
-                { group: 'Frontend',            items: ['React', 'Astro', 'Tailwind CSS'] },
-                { group: 'Backend',             items: ['Node.js/Express', 'Flask', 'REST APIs'] },
-                { group: 'Database',            items: ['PostgreSQL'] },
-                { group: 'Mobile',              items: ['React Native'] },
-                { group: 'Tools & Deployment',  items: ['Git/GitHub', 'Docker', 'Vercel', 'Figma'] },
-                { group: 'Currently Learning',  items: ['TypeScript', 'Next.js'], learning: true },
-            ].map(({ group, items, learning }) => (
-                <div key={group} className="term-skill-group">
-                    <span className="term-skill-label">{group}</span>
-                    <div className="term-tags">
-                        {items.map(item => (
-                            <span key={item} className={`term-tag${learning ? ' term-tag--learning' : ''}`}>
-                                {item}
-                            </span>
-                        ))}
+            {experience.map(({ id, role, org, location, start, end, bullets }) => (
+                <div className="term-entry" key={id}>
+                    <div className="term-entry-header">
+                        <span className="term-entry-title">{role}</span>
+                        <span className="term-entry-meta">{formatEntryMeta(org, location, start, end)}</span>
                     </div>
+                    <ul className="term-list">
+                        {bullets.map((bullet) => (
+                            <li key={bullet}>{bullet}</li>
+                        ))}
+                    </ul>
                 </div>
             ))}
         </div>
     ),
 
+    projects: (
+        <div>
+            {featuredProjects.map(({ id, name, role, tags, detail, highlight }) => (
+                <div className="term-entry" key={id}>
+                    <div className="term-entry-header">
+                        <span className="term-entry-title">{name}</span>
+                        <span className="term-entry-meta">{role}</span>
+                    </div>
+                    <div className="term-tags">
+                        {tags.map((tag) => (
+                            <span className="term-tag" key={tag}>{tag}</span>
+                        ))}
+                    </div>
+                    <p>{detail}</p>
+                    <p>{highlight}</p>
+                </div>
+            ))}
+        </div>
+    ),
+
+    skills: (
+        <div className="term-skills">
+            {skillGroups.map(({ label, items }) => {
+                const learning = label === 'Currently Learning';
+                return (
+                    <div key={label} className="term-skill-group">
+                        <span className="term-skill-label">{label}</span>
+                        <div className="term-tags">
+                            {items.map(item => (
+                                <span key={item} className={`term-tag${learning ? ' term-tag--learning' : ''}`}>
+                                    {item}
+                                </span>
+                            ))}
+                        </div>
+                    </div>
+                );
+            })}
+        </div>
+    ),
+
     education: (
         <div>
-            <div className="term-entry">
-                <div className="term-entry-header">
-                    <span className="term-entry-title">Full-Stack Software Development</span>
-                    <span className="term-entry-meta">Jan – Jul 2023</span>
+            {education.map(({ id, credential, school, year }) => (
+                <div className="term-entry" key={id}>
+                    <div className="term-entry-header">
+                        <span className="term-entry-title">{credential}</span>
+                        <span className="term-entry-meta">{year}</span>
+                    </div>
+                    <p className="term-entry-org">{school}</p>
                 </div>
-                <p className="term-entry-org">Prime Digital Academy · Remote (Minneapolis, MN)</p>
-            </div>
-
-            <div className="term-entry">
-                <div className="term-entry-header">
-                    <span className="term-entry-title">A.A. Coursework, Computer &amp; Information Science</span>
-                    <span className="term-entry-meta">2018 – 2022</span>
-                </div>
-                <p className="term-entry-org">Saint Petersburg College, FL</p>
-            </div>
+            ))}
         </div>
     ),
 
@@ -162,36 +107,36 @@ const CONTENT = {
         <div className="term-contact">
             <div className="term-contact-row">
                 <span className="term-contact-label">LOCATION</span>
-                <span>Minneapolis, MN (Remote)</span>
+                <span>{profile.location}</span>
             </div>
             <div className="term-contact-row">
                 <span className="term-contact-label">PHONE</span>
-                <a href="tel:+19526938402" className="term-link">(952) 693-8402</a>
+                <a href={`tel:${contact.phone}`} className="term-link">{contact.phone}</a>
             </div>
             <div className="term-contact-row">
                 <span className="term-contact-label">EMAIL</span>
-                <a href="mailto:sethbaxendell1@gmail.com" className="term-link">sethbaxendell1@gmail.com</a>
+                <a href={`mailto:${contact.email}`} className="term-link">{contact.email}</a>
             </div>
             <div className="term-contact-row">
                 <span className="term-contact-label">LINKEDIN</span>
                 <a
-                    href="https://linkedin.com/in/sethbaxendell"
+                    href={contact.linkedin}
                     target="_blank"
                     rel="noreferrer"
                     className="term-link"
                 >
-                    linkedin.com/in/sethbaxendell
+                    {stripProtocol(contact.linkedin)}
                 </a>
             </div>
             <div className="term-contact-row">
                 <span className="term-contact-label">GITHUB</span>
                 <a
-                    href="https://github.com/sbaxend"
+                    href={contact.github}
                     target="_blank"
                     rel="noreferrer"
                     className="term-link"
                 >
-                    github.com/sbaxend
+                    {stripProtocol(contact.github)}
                 </a>
             </div>
         </div>
@@ -303,8 +248,8 @@ function MainResumePage() {
                     <span className="term-label">PERSONNEL TERMINAL</span>
                 </div>
                 <a
-                    href="/SBResume.pdf"
-                    download="Seth_Baxendell_Resume.pdf"
+                    href={profile.resumePdf}
+                    download={profile.resumeDownloadName}
                     className="term-download-btn"
                 >
                     Download Résumé
