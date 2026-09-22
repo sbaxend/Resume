@@ -29,6 +29,8 @@ export const profile = {
 
 export const contact = {
   email: "sethbaxendell1@gmail.com",
+  // Intentionally not rendered on the site (privacy) — still used by the
+  // downloadable PDF and direct applications, so keep it here.
   phone: "(952) 693-8402",
   linkedin: "https://linkedin.com/in/sethbaxendell",
   github: profile.githubUrl,

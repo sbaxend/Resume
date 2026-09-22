@@ -157,7 +157,6 @@ function UserPage() {
         {/* ── Contact ── */}
         <section id="contact">
           <h2 className="section-heading">Contact</h2>
-          <p className="contact-line">Phone: {contact.phone}</p>
           <p className="contact-line">
             Email: <a href={`mailto:${contact.email}`}>{contact.email}</a>
           </p>

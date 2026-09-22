@@ -122,10 +122,6 @@ const CONTENT = {
                 <span>{profile.location}</span>
             </div>
             <div className="term-contact-row">
-                <span className="term-contact-label">PHONE</span>
-                <a href={`tel:${contact.phone}`} className="term-link">{contact.phone}</a>
-            </div>
-            <div className="term-contact-row">
                 <span className="term-contact-label">EMAIL</span>
                 <a href={`mailto:${contact.email}`} className="term-link">{contact.email}</a>
             </div>
