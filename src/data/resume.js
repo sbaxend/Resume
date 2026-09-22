@@ -13,7 +13,7 @@ export const profile = {
   title: "Full-Stack Developer",
   // Short stack line for the hero
   stack: "React · Node · PostgreSQL · Flask",
-  location: "Minneapolis, MN (Remote)",
+  location: "St. Petersburg, FL (Remote)",
   githubUrl: "https://github.com/sbaxend",
   resumePdf: "/SBResume.pdf", // lives in /public
   resumeDownloadName: "Seth_Baxendell_Resume.pdf", // filename offered on download
