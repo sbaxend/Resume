@@ -72,8 +72,8 @@ export const projects = [
     highlight:
       "TODO: e.g. modeling recurring service intervals that trigger on whichever comes first — mileage or elapsed time — without duplicating reminders.",
     tags: ["React", "Redux", "Node", "Express", "PostgreSQL"],
-    live: "TODO: deployed URL or null",
-    code: "TODO: repo URL",
+    live: null,
+    code: null,
     image: "/images/vehicle-maintenance.png",
     featured: true,
   },
@@ -90,7 +90,7 @@ export const projects = [
       "TODO: name your specific contribution — which features you owned, and one technical problem you personally solved. Vague team-project descriptions are the fastest way to get skimmed past.",
     tags: ["React Native", "Node", "PostgreSQL"],
     live: null,
-    code: "TODO: repo URL",
+    code: null,
     image: "/images/team-app.png",
     featured: true,
   },
@@ -105,8 +105,8 @@ export const projects = [
       "Flask app for real-time portfolio analytics from external APIs, with error handling and logging for stability; containerized with Docker.",
     highlight: "TODO: one sentence on the hardest part of this project.",
     tags: ["Python", "Flask", "CoinGecko API", "Docker"],
-    live: "TODO: deployed URL or null",
-    code: "TODO: repo URL or null if private",
+    live: null,
+    code: null,
     image: "/images/crypto-portfolio-tracker.png", // TODO: add screenshot to /public/images
     featured: true,
   },
@@ -144,7 +144,6 @@ export const experience = [
     onPortfolio: true,
     bullets: [
       "Build and deploy marketing and small-business sites end to end, from design through domain and hosting setup.",
-      "TODO: add a bullet with a number in it — clients served, load time improved, hours saved.",
     ],
   },
   {
@@ -205,6 +204,18 @@ export const education = [
     detail: "TODO: field of study.",
   },
 ];
+
+// ---------------------------------------------------------------------------
+// Render guards
+// ---------------------------------------------------------------------------
+// A field still marked TODO should never reach the page. Components use
+// these before rendering any string/link/bullet sourced from this file.
+
+export const isTodoValue = (value) =>
+  typeof value === "string" && value.trim().startsWith("TODO:");
+
+export const isLinkValue = (value) =>
+  typeof value === "string" && value.trim().startsWith("http");
 
 // ---------------------------------------------------------------------------
 // Convenience selectors — keeps filtering logic out of your components.

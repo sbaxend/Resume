@@ -7,6 +7,8 @@ import {
   featuredProjects,
   portfolioExperience,
   education,
+  isTodoValue,
+  isLinkValue,
 } from '../../data/resume';
 import './UserPage.css';
 
@@ -82,12 +84,12 @@ function UserPage() {
               <div className="project-header">
                 <h3 className="project-title">{project.name}</h3>
                 <div className="project-links">
-                  {project.live && (
+                  {isLinkValue(project.live) && (
                     <a href={project.live} target="_blank" rel="noopener noreferrer">
                       Live ↗
                     </a>
                   )}
-                  {project.code && (
+                  {isLinkValue(project.code) && (
                     <a href={project.code} target="_blank" rel="noopener noreferrer">
                       Code ↗
                     </a>
@@ -132,7 +134,7 @@ function UserPage() {
               <h3 className="role-title">{role}</h3>
               <p className="role-meta">{formatMeta(org, location, start, end)}</p>
               <ul>
-                {bullets.map((bullet) => (
+                {bullets.filter((bullet) => !isTodoValue(bullet)).map((bullet) => (
                   <li key={bullet}>{bullet}</li>
                 ))}
               </ul>
@@ -147,7 +149,7 @@ function UserPage() {
             <div className="education-item" key={id}>
               <h3 className="role-title">{credential}</h3>
               <p className="role-meta">{school} · {year}</p>
-              <p className="body-text">{detail}</p>
+              {!isTodoValue(detail) && <p className="body-text">{detail}</p>}
             </div>
           ))}
         </section>

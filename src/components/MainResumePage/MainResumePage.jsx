@@ -7,6 +7,8 @@ import {
     featuredProjects,
     experience,
     education,
+    isTodoValue,
+    isLinkValue,
 } from '../../data/resume';
 import './MainResumePage.css';
 
@@ -40,7 +42,7 @@ const CONTENT = {
                         <span className="term-entry-meta">{formatEntryMeta(org, location, start, end)}</span>
                     </div>
                     <ul className="term-list">
-                        {bullets.map((bullet) => (
+                        {bullets.filter((bullet) => !isTodoValue(bullet)).map((bullet) => (
                             <li key={bullet}>{bullet}</li>
                         ))}
                     </ul>
@@ -51,19 +53,29 @@ const CONTENT = {
 
     projects: (
         <div>
-            {featuredProjects.map(({ id, name, role, tags, detail, highlight }) => (
+            {featuredProjects.map(({ id, name, role, tags, detail, highlight, live, code }) => (
                 <div className="term-entry" key={id}>
                     <div className="term-entry-header">
                         <span className="term-entry-title">{name}</span>
-                        <span className="term-entry-meta">{role}</span>
+                        {!isTodoValue(role) && <span className="term-entry-meta">{role}</span>}
                     </div>
                     <div className="term-tags">
                         {tags.map((tag) => (
                             <span className="term-tag" key={tag}>{tag}</span>
                         ))}
                     </div>
+                    {(isLinkValue(live) || isLinkValue(code)) && (
+                        <div className="term-links">
+                            {isLinkValue(live) && (
+                                <a href={live} target="_blank" rel="noreferrer" className="term-link">Live ↗</a>
+                            )}
+                            {isLinkValue(code) && (
+                                <a href={code} target="_blank" rel="noreferrer" className="term-link">Code ↗</a>
+                            )}
+                        </div>
+                    )}
                     <p>{detail}</p>
-                    <p>{highlight}</p>
+                    {!isTodoValue(highlight) && <p>{highlight}</p>}
                 </div>
             ))}
         </div>

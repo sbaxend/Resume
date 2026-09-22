@@ -280,6 +280,13 @@
     margin: 8px 0 12px;
 }
 
+.term-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin: 4px 0 10px;
+}
+
 .term-tag {
     font-size: 0.73rem;
     padding: 3px 10px;
