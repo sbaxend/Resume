@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import './ClickToStart.css';
 import UserPage from '../UserPage/UserPage';
 import { useHistory } from 'react-router-dom';
@@ -8,15 +8,18 @@ function ClickToStart() {
     const [isStartingScreenVisible, setIsStartingScreenVisible] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
     const history = useHistory();
+    const hasStartedRef = useRef(false);
 
-    const handleStartClick = () => {
+    const handleStartClick = useCallback(() => {
+        if (hasStartedRef.current) return;
+        hasStartedRef.current = true;
         setIsLoading(true);
         setIsStartingScreenVisible(false);
         setTimeout(() => {
             setIsLoading(false);
             history.push("/user");
-        }, 3000);
-    };
+        }, 800);
+    }, [history]);
 
     const createStars = () => {
         const startingScreen = document.querySelector('.startingScreen');
@@ -34,6 +37,20 @@ function ClickToStart() {
     useEffect(() => {
         createStars();
     }, []);
+
+    useEffect(() => {
+        if (!isStartingScreenVisible) return;
+
+        window.addEventListener('keydown', handleStartClick);
+        window.addEventListener('wheel', handleStartClick, { passive: true });
+        window.addEventListener('touchmove', handleStartClick, { passive: true });
+
+        return () => {
+            window.removeEventListener('keydown', handleStartClick);
+            window.removeEventListener('wheel', handleStartClick);
+            window.removeEventListener('touchmove', handleStartClick);
+        };
+    }, [isStartingScreenVisible, handleStartClick]);
 
     return (
         <div>
